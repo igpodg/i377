@@ -1,5 +1,6 @@
 package test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import test.model.Order;
 
@@ -10,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet("/api/orders")
 public class OrdersServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    protected static Long id = 1L;
 
-    protected static Map<Long, Order> savedOrders = new HashMap<>();
+    protected static OrderDao orderDao = new OrderDao();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,10 +28,19 @@ public class OrdersServlet extends HttpServlet {
         request.getInputStream().read(inputArray);
         String input = new String(inputArray).trim();
         Order order = objectMapper.readValue(input, Order.class);
-        order.setId(id);
-        savedOrders.put(id, order);
-        id++;
+        order = orderDao.insertOrder(order);
         String output = objectMapper.writeValueAsString(order);
+
+        response.setContentType("application/json");
+        response.getWriter().print(output);
+    }
+
+    private void doGetAllOrders(HttpServletRequest request, HttpServletResponse response)
+            throws JsonProcessingException, IOException {
+
+        List<Order> allOrders = orderDao.getOrderList();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String output = objectMapper.writeValueAsString(allOrders);
 
         response.setContentType("application/json");
         response.getWriter().print(output);
@@ -44,11 +54,13 @@ public class OrdersServlet extends HttpServlet {
         try {
             receivedId = Long.parseLong(receivedIdString);
         } catch (Exception e) {
+            doGetAllOrders(request, response);
             return;
         }
 
-        Order order = savedOrders.get(receivedId);
+        Order order = orderDao.getOrderById(receivedId);
         if (order == null) {
+            doGetAllOrders(request, response);
             return;
         }
 

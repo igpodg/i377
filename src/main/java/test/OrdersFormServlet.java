@@ -33,11 +33,9 @@ public class OrdersFormServlet extends HttpServlet {
                     break;
             }
         }
-        order.setId(OrdersServlet.id);
-        OrdersServlet.savedOrders.put(OrdersServlet.id, order);
+        order = OrdersServlet.orderDao.insertOrder(order);
 
         response.setContentType("application/json");
-        response.getWriter().print(OrdersServlet.id);
-        OrdersServlet.id++;
+        response.getWriter().print(order.getId());
     }
 }

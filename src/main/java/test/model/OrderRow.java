@@ -27,7 +27,7 @@ public class OrderRow {
 
     @Override
     public String toString() {
-        return "test.model.OrderRow{" +
+        return "OrderRow{" +
                 "itemName='" + itemName + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +

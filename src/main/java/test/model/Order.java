@@ -17,6 +17,11 @@ public class Order {
         this.orderNumber = orderNumber;
     }
 
+    public Order(Long id, String orderNumber) {
+        this.id = id;
+        this.orderNumber = orderNumber;
+    }
+
     public Long getId() {
         return this.id;
     }
@@ -47,7 +52,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "test.model.Order{" +
+        return "Order{" +
                 "id=" + id +
                 ", orderNumber='" + orderNumber + '\'' +
                 ", orderRows=" + orderRows +
