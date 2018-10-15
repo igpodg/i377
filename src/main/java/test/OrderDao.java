@@ -1,6 +1,7 @@
 package test;
 
 import test.model.Order;
+import test.util.DataSourceProvider;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class OrderDao {
         String sql = "insert into orders (id, orderNumber, orderRows) " +
                 "values (next value for seq1, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(DatabaseContextListener.DATABASE_URL);
+        try (Connection conn = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"})) {
 
             pstmt.setString(1, order.getOrderNumber());
@@ -30,7 +31,7 @@ public class OrderDao {
     public Order getOrderById(Long id) {
         String sql = "select id, orderNumber, orderRows from orders where id = ?";
 
-        try (Connection conn = DriverManager.getConnection(DatabaseContextListener.DATABASE_URL);
+        try (Connection conn = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setLong(1, id);
@@ -48,7 +49,7 @@ public class OrderDao {
     public List<Order> getOrderList() {
         List<Order> orderList = new ArrayList<>();
 
-        try (Connection conn = DriverManager.getConnection(DatabaseContextListener.DATABASE_URL);
+        try (Connection conn = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = conn.createStatement()) {
 
             ResultSet rs = stmt.executeQuery("select * from orders");

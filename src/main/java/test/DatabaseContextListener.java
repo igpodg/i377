@@ -1,19 +1,18 @@
 package test;
 
+import test.util.DataSourceProvider;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.stream.Collectors;
 
 @WebListener
 public class DatabaseContextListener implements ServletContextListener {
-    public final static String DATABASE_URL = "jdbc:hsqldb:mem:db";
-
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Context initialized.");
@@ -25,7 +24,7 @@ public class DatabaseContextListener implements ServletContextListener {
                 .lines()
                 .collect(Collectors.joining("\n"));
 
-        try (Connection conn = DriverManager.getConnection(DATABASE_URL);
+        try (Connection conn = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = conn.createStatement()) {
 
             stmt.executeUpdate(schemaString);
