@@ -4,6 +4,12 @@ CREATE SEQUENCE seq1 START WITH 1;
 
 CREATE TABLE orders (
    id BIGINT NOT NULL PRIMARY KEY,
-   orderNumber VARCHAR(255) NOT NULL,
-   orderRows VARCHAR(255)
+   orderNumber VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE orderrows (
+   id BIGINT NOT NULL,
+   itemName VARCHAR(255),
+   quantity INTEGER,
+   price INTEGER
 );

@@ -68,4 +68,18 @@ public class OrdersServlet extends HttpServlet {
         response.setContentType("application/json");
         response.getWriter().print(output);
     }
+
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String receivedIdString = request.getParameter("id");
+        Long receivedId;
+        try {
+            receivedId = Long.parseLong(receivedIdString);
+        } catch (Exception e) {
+            return;
+        }
+
+        orderDao.deleteOrderById(receivedId);
+    }
 }

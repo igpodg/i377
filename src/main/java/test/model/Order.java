@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Order {
     private Long id;
     private String orderNumber;
@@ -20,6 +20,7 @@ public class Order {
     public Order(Long id, String orderNumber) {
         this.id = id;
         this.orderNumber = orderNumber;
+        this.orderRows = null;
     }
 
     public Long getId() {
