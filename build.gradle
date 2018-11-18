@@ -21,6 +21,8 @@ dependencies {
 
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
 
+    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.2.Final'
 
     compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
