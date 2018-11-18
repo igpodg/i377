@@ -26,6 +26,10 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
 
     compile group: 'org.springframework', name: 'spring-jdbc', version: springVersion
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.7.Final'
+
+    compile group: 'org.springframework', name: 'spring-orm', version: springVersion
 }
 
 gretty {

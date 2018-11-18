@@ -1,9 +1,13 @@
 package test.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+@Embeddable
+@Table(name = "order_rows")
 public class OrderRow {
+    @Column(name = "item_name")
     private String itemName;
 
     @NotNull

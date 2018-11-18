@@ -33,4 +33,9 @@ public class OrderController {
     public void deleteOrder(@PathVariable("orderId") Long orderId) {
         dao.delete(orderId);
     }
+
+    @DeleteMapping(value = "orders", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void deleteAllOrders() {
+        dao.deleteAll();
+    }
 }

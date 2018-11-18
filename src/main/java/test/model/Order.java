@@ -2,6 +2,7 @@ package test.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -9,14 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@JsonInclude(JsonInclude.Include.NON_NULL)
+@Entity
+@Table(name = "orders")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
+    @SequenceGenerator(name = "my_seq", sequenceName = "order_sequence", allocationSize = 1)
     private Long id;
 
     @Size(min = 2)
+    @Column(name = "order_number")
     private String orderNumber;
 
     //@NotNull
     @Valid
+    @ElementCollection(fetch = FetchType.EAGER) // fetch on first call
+    @CollectionTable(
+            name = "order_rows",
+            joinColumns=@JoinColumn(name = "orders_id",
+                    referencedColumnName = "id")
+    )
     private List<OrderRow> orderRows;
 
     public Order() {}
