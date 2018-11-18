@@ -2,12 +2,15 @@ package test.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Order {
     private Long id;
+
+    @Size(min = 2)
     private String orderNumber;
     private List<OrderRow> orderRows;
 

@@ -138,4 +138,26 @@ public class OrderDao {
         }
     }
 
+    public void deleteOrders() {
+        String sql1 = "delete from orderrows";
+
+        try (Connection conn = DataSourceProvider.getDataSource().getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            stmt.executeUpdate(sql1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        String sql2 = "delete from orders";
+
+        try (Connection conn = DataSourceProvider.getDataSource().getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            stmt.executeUpdate(sql2);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
