@@ -25,6 +25,8 @@ dependencies {
 
     compile group: 'javax.activation', name: 'javax.activation-api', version: '1.2.0'
 
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.2.Final'
 
     compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
@@ -37,5 +39,6 @@ dependencies {
 }
 
 gretty {
+    servletContainer = 'jetty9.4'
     contextPath = '/'
 }
