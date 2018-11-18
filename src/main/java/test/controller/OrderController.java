@@ -25,7 +25,7 @@ public class OrderController {
     }
 
     @PostMapping(value = "orders", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Order save(@RequestBody @Valid Order order) {
+    public Order save(@Valid @RequestBody Order order) {
         return dao.save(order);
     }
 

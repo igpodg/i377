@@ -1,17 +1,17 @@
 package test.model;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 public class OrderRow {
     private String itemName;
 
     @NotNull
-    @Size(min = 1)
+    @Min(1)
     private Integer quantity;
 
     @NotNull
-    @Size(min = 1)
+    @Min(1)
     private Integer price;
 
     public OrderRow() {}

@@ -2,6 +2,8 @@ package test.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,9 @@ public class Order {
 
     @Size(min = 2)
     private String orderNumber;
+
+    //@NotNull
+    @Valid
     private List<OrderRow> orderRows;
 
     public Order() {}

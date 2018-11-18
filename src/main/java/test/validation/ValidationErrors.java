@@ -3,12 +3,13 @@ package test.validation;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.FieldError;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ValidationErrors {
-    private List<ValidationError> errors;
+    private List<ValidationError> errors = new ArrayList<>();
 
     public List<ValidationError> getErrors() {
         return errors;
