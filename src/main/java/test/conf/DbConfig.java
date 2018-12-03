@@ -13,6 +13,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import test.initialization.DataSourceInitializer;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -32,9 +33,10 @@ public class DbConfig {
 
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName("org.hsqldb.jdbcDriver");
-        ds.setUrl(env.getProperty("db.url"));
+        //DriverManagerDataSource ds = new DriverManagerDataSource();
+        //ds.setDriverClassName("org.hsqldb.jdbcDriver");
+        //ds.setUrl(env.getProperty("db.url"));
+        DriverManagerDataSource ds = DataSourceInitializer.getDataSource(env);
 
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream schemaStream = classLoader.getResourceAsStream("schema.sql");

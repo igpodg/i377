@@ -11,6 +11,7 @@ repositories {
 sourceCompatibility = 8
 
 def springVersion = '5.1.0.RELEASE'
+def springSecurityVersion = '5.1.1.RELEASE'
 
 dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.7'
@@ -36,6 +37,10 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.7.Final'
 
     compile group: 'org.springframework', name: 'spring-orm', version: springVersion
+
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: springSecurityVersion
+
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: springSecurityVersion
 }
 
 gretty {

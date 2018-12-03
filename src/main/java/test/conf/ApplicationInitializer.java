@@ -7,7 +7,7 @@ public class ApplicationInitializer extends
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {};
+        return new Class[] { DbConfig.class, SecurityConfig.class };
     }
 
     @Override
